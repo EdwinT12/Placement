@@ -15,11 +15,9 @@ object = json.loads(jsondata)
 
 mylist = object['athisudi']
 
-image_path = "Placement/images"
-
 for i in range(len(mylist)):
 
-    def draw_text_to_image(image, text, font,text_colour, text_start_height, stroke_colour):
+    def draw_text_to_image(image,width,text, font,text_colour, text_start_height, stroke_colour):
         draw = ImageDraw.Draw(img)
         image_width, image_height = image.size
         y_text = text_start_height
@@ -30,40 +28,55 @@ for i in range(len(mylist)):
             fill = text_colour, stroke_width=2,stroke_fill=stroke_colour)
             y_text += line_height
         
-
+    ###### Retrieving the text from the json file ######
     peom = mylist[i].get("poem")
     paraphrase = mylist[i].get("paraphrase")
     translation = mylist[i].get("translation")
-    # thislist.append(mylist[i].get("state"))
+    
+    print("length: ",len(paraphrase))
+
+    fontsize= 120
+
+    if len(paraphrase) >80:
+        fontsize=80
+
+    ###### opening the image template ######
 
     img = Image.open('Placement/aathichoodi_template.png')
     width = img.width
     height = img.height
     #print("Image width: ", width)
 
+    ###### Setting the colours ######
+
     peom_text_colour = "#7A0026"
     peom_stroke_colour = "#7A0026"
     paraphrase_text_colour = "#FCD92B"
     paraphrase_stroke_colour = "#7A0026"
 
-   
+    ###### setting the fonts ######
+
     #fnt = ImageFont.truetype("st_024.tff",90, layout_engine=ImageFont.LAYOUT_RAQM)
     #fnt2 = ImageFont.truetype("latha.ttf", 50, layout_engine=ImageFont.LAYOUT_RAQM)
     # fnt = ImageFont.truetype("Arial", 15)
+
     fnt_peom = ImageFont.truetype("Placement/akshar.TTF", 120)
-    fnt_paraphrase = ImageFont.truetype("Placement/akshar.TTF", 120)
+    fnt_paraphrase = ImageFont.truetype("Placement/akshar.TTF", fontsize)
+    
+    ###### Drawing the text onto the image ######
 
     # draw.text((width/2,height/4), peom, font= fnt, fill = (0,0,0), anchor="ma") 
     # draw.text((width / 2, height / 2), paraphrase, font= fnt, fill=(0, 0, 0), anchor="ma") 
     # draw.text((width / 2, height*0.75), translation, font= fnt,fill=(0, 0, 0), anchor="ma")
 
-    draw_text_to_image(img,peom,fnt_peom,peom_text_colour,height/4,paraphrase_stroke_colour )
-    draw_text_to_image(img,paraphrase,fnt_paraphrase,paraphrase_text_colour,height/2.5, paraphrase_stroke_colour)
+    draw_text_to_image(img,width,peom,fnt_peom,peom_text_colour,height/4,paraphrase_stroke_colour )
+    draw_text_to_image(img,width,paraphrase,fnt_paraphrase,paraphrase_text_colour,height/2.5, paraphrase_stroke_colour)
     #draw_text_to_image(img,translation,fnt,height*0.75)
 
+    ###### Saving the image ######
     img.save("Placement/images/new%s.png" % i)
 
-    # if i == 0:
+    # if i == 5:
     #     my_file = Path("Placement/images/new%s.png") 
     #     if my_file.is_file():
     #         print("replace")
@@ -73,7 +86,7 @@ for i in range(len(mylist)):
 
     print(i+1)
     
-print("done")
+print("Images Successfully created")
 
 
 

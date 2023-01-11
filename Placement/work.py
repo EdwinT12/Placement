@@ -49,13 +49,13 @@ for i in range(len(mylist)):
         offset += fnt.getsize(line)[1]
     img.save("Placement/images/new%s.png" % i)
 
-    # if i == 0:
-    #     my_file = Path("Placement/images/new%s.png") 
-    #     if my_file.is_file():
-    #         print("replace")
-    #     else:
-    #         print("okay")
-    #     break
+    if i == 4:
+        my_file = Path("Placement/images/new%s.png") 
+        if my_file.is_file():
+            print("replace")
+        else:
+            print("okay")
+        break
 
     print(i+1)
     
