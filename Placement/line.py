@@ -25,7 +25,7 @@ thislist = []
 thislist = thislist.sort()
 for i in range(len(mylist)):
 
-    def draw_text_to_image(image, text, font,text_colour, text_start_height):
+    def draw_text_to_image(image, text, font,text_colour, text_start_height, stroke_colour):
         draw = ImageDraw.Draw(img)
         image_width, image_height = image.size
         y_text = text_start_height
@@ -33,7 +33,7 @@ for i in range(len(mylist)):
         for line in lines:
             line_width, line_height = font.getsize(line)
             draw.text(((image_width - line_width) / 2, y_text), line, font=font, 
-            fill = text_colour, stroke_width=2, stroke_fill="black")
+            fill = text_colour, stroke_width=2,stroke_fill=stroke_colour)
             y_text += line_height
         
 
@@ -48,7 +48,10 @@ for i in range(len(mylist)):
     #print("Image width: ", width)
 
     peom_text_colour = "#7A0026"
+    peom_stroke_colour = "#7A0026"
     paraphrase_text_colour = "#FCD92B"
+    paraphrase_stroke_colour = "#7A0026"
+
    
     #fnt = ImageFont.truetype("st_024.tff",90, layout_engine=ImageFont.LAYOUT_RAQM)
     #fnt2 = ImageFont.truetype("latha.ttf", 50, layout_engine=ImageFont.LAYOUT_RAQM)
@@ -60,8 +63,8 @@ for i in range(len(mylist)):
     # draw.text((width / 2, height / 2), paraphrase, font= fnt, fill=(0, 0, 0), anchor="ma") 
     # draw.text((width / 2, height*0.75), translation, font= fnt,fill=(0, 0, 0), anchor="ma")
 
-    draw_text_to_image(img,peom,fnt_peom,peom_text_colour,height/4)
-    draw_text_to_image(img,paraphrase,fnt_paraphrase,paraphrase_text_colour,height/3)
+    draw_text_to_image(img,peom,fnt_peom,peom_text_colour,height/4,paraphrase_stroke_colour )
+    draw_text_to_image(img,paraphrase,fnt_paraphrase,paraphrase_text_colour,height/3, paraphrase_stroke_colour)
     #draw_text_to_image(img,translation,fnt,height*0.75)
 
     img.save("Placement/images/new%s.png" % i)
