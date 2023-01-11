@@ -11,7 +11,13 @@ jsondata= thefile.read()
 
 #parse
 
-object = json.loads(jsondata)
+object = json.loads(athisudi)
+
+if "peom" in object:
+    print("Key exist in JSON data")
+   
+else:
+    print("Key doesn't exist in JSON data")
 
 mylist = object['athisudi']
 
@@ -29,10 +35,20 @@ for i in range(len(mylist)):
             y_text += line_height
         
     ###### Retrieving the text from the json file ######
+
     peom = mylist[i].get("poem")
     paraphrase = mylist[i].get("paraphrase")
     translation = mylist[i].get("translation")
     
+    
+
+    if peom == "":
+        peom = "No text provided"
+    if paraphrase == "":
+        paraphrase = "No text provided"
+        
+        
+
     print("length: ",len(paraphrase))
 
     fontsize= 120
