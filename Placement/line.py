@@ -11,17 +11,13 @@ jsondata= thefile.read()
 
 #parse
 
-object = json.loads(athisudi)
-
-if "peom" in object:
-    print("Key exist in JSON data")
-   
-else:
-    print("Key doesn't exist in JSON data")
+object = json.loads(jsondata)
 
 mylist = object['athisudi']
 
 for i in range(len(mylist)):
+
+    ###### showing the text in seperate lines ######
 
     def draw_text_to_image(image,width,text, font,text_colour, text_start_height, stroke_colour):
         draw = ImageDraw.Draw(img)
@@ -33,28 +29,27 @@ for i in range(len(mylist)):
             draw.text(((image_width - line_width) / 2, y_text), line, font=font, 
             fill = text_colour, stroke_width=2,stroke_fill=stroke_colour)
             y_text += line_height
-        
+
     ###### Retrieving the text from the json file ######
-
-    peom = mylist[i].get("poem")
-    paraphrase = mylist[i].get("paraphrase")
-    translation = mylist[i].get("translation")
     
+    if mylist[i].get("poem") == None:
+        print("poda pati 1")
+        poem = "No Text Provided"
+    else:
+        poem = mylist[i].get("poem")
     
+    if mylist[i].get("paraphrase") == None:
+        print("poda pati")
+        paraphrase = "No Text Provided"
+    else:
+        paraphrase = mylist[i].get("paraphrase")
 
-    if peom == "":
-        peom = "No text provided"
-    if paraphrase == "":
-        paraphrase = "No text provided"
-        
-        
+    #translation = mylist[i].get("translation")
 
-    print("length: ",len(paraphrase))
-
+    ###### settings for fontsize ######
     fontsize= 120
-
     if len(paraphrase) >80:
-        fontsize=80
+        fontsize=70
 
     ###### opening the image template ######
 
@@ -65,8 +60,8 @@ for i in range(len(mylist)):
 
     ###### Setting the colours ######
 
-    peom_text_colour = "#7A0026"
-    peom_stroke_colour = "#7A0026"
+    poem_text_colour = "#7A0026"
+    poem_stroke_colour = "#7A0026"
     paraphrase_text_colour = "#FCD92B"
     paraphrase_stroke_colour = "#7A0026"
 
@@ -75,17 +70,15 @@ for i in range(len(mylist)):
     #fnt = ImageFont.truetype("st_024.tff",90, layout_engine=ImageFont.LAYOUT_RAQM)
     #fnt2 = ImageFont.truetype("latha.ttf", 50, layout_engine=ImageFont.LAYOUT_RAQM)
     # fnt = ImageFont.truetype("Arial", 15)
-
-    fnt_peom = ImageFont.truetype("Placement/akshar.TTF", 120)
+    fnt_poem = ImageFont.truetype("Placement/akshar.TTF", 120)
     fnt_paraphrase = ImageFont.truetype("Placement/akshar.TTF", fontsize)
     
     ###### Drawing the text onto the image ######
 
-    # draw.text((width/2,height/4), peom, font= fnt, fill = (0,0,0), anchor="ma") 
+    # draw.text((width/2,height/4), poem, font= fnt, fill = (0,0,0), anchor="ma") 
     # draw.text((width / 2, height / 2), paraphrase, font= fnt, fill=(0, 0, 0), anchor="ma") 
     # draw.text((width / 2, height*0.75), translation, font= fnt,fill=(0, 0, 0), anchor="ma")
-
-    draw_text_to_image(img,width,peom,fnt_peom,peom_text_colour,height/4,paraphrase_stroke_colour )
+    draw_text_to_image(img,width,poem,fnt_poem,poem_text_colour,height/4,paraphrase_stroke_colour )
     draw_text_to_image(img,width,paraphrase,fnt_paraphrase,paraphrase_text_colour,height/2.5, paraphrase_stroke_colour)
     #draw_text_to_image(img,translation,fnt,height*0.75)
 

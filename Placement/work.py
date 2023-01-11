@@ -21,8 +21,8 @@ mylist = object['athisudi']
 thislist = []
 thislist = thislist.sort()
 for i in range(len(mylist)):
-    peom = mylist[i].get("poem")
-    print(peom)
+    poem = mylist[i].get("poem")
+    print(poem)
     paraphrase = mylist[i].get("paraphrase")
     translation = mylist[i].get("translation")
     # thislist.append(mylist[i].get("state"))
@@ -38,8 +38,8 @@ for i in range(len(mylist)):
     # fnt = ImageFont.truetype("Arial", 15)
     fnt = ImageFont.truetype("Placement/akshar.TTF", 50)
     margin = offset = 40
-    for line in textwrap.wrap(peom, width=900):
-        draw.text((margin, offset), line,(width/2,height/4), peom, font= fnt, fill = (0,0,0), anchor="ma")
+    for line in textwrap.wrap(poem, width=900):
+        draw.text((margin, offset), line,(width/2,height/4), poem, font= fnt, fill = (0,0,0), anchor="ma")
         offset += fnt.getsize(line)[1]
     for line in textwrap.wrap(paraphrase, width=900):
         draw.text((margin, offset), line,(width / 2, height / 2), paraphrase, font= fnt, fill=(0, 0, 0), anchor="ma")
