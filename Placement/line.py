@@ -4,8 +4,8 @@ import os
 import os.path
 from pathlib import Path
 import textwrap
-#read file
 
+#read file
 thefile= open('Placement/jsonfiles/aathicudi.json','rb')
 jsondata= thefile.read()
 
@@ -15,21 +15,15 @@ object = json.loads(jsondata)
 
 mylist = object['athisudi']
 
-
-
 image_path = "Placement/images"
 
-
-
-thislist = []
-thislist = thislist.sort()
 for i in range(len(mylist)):
 
     def draw_text_to_image(image, text, font,text_colour, text_start_height, stroke_colour):
         draw = ImageDraw.Draw(img)
         image_width, image_height = image.size
         y_text = text_start_height
-        lines = textwrap.wrap(text, width=20)
+        lines = textwrap.wrap(text, width=15)
         for line in lines:
             line_width, line_height = font.getsize(line)
             draw.text(((image_width - line_width) / 2, y_text), line, font=font, 
@@ -56,15 +50,15 @@ for i in range(len(mylist)):
     #fnt = ImageFont.truetype("st_024.tff",90, layout_engine=ImageFont.LAYOUT_RAQM)
     #fnt2 = ImageFont.truetype("latha.ttf", 50, layout_engine=ImageFont.LAYOUT_RAQM)
     # fnt = ImageFont.truetype("Arial", 15)
-    fnt_peom = ImageFont.truetype("Placement/akshar.TTF", 100)
-    fnt_paraphrase = ImageFont.truetype("Placement/akshar.TTF", 100)
+    fnt_peom = ImageFont.truetype("Placement/akshar.TTF", 120)
+    fnt_paraphrase = ImageFont.truetype("Placement/akshar.TTF", 120)
 
     # draw.text((width/2,height/4), peom, font= fnt, fill = (0,0,0), anchor="ma") 
     # draw.text((width / 2, height / 2), paraphrase, font= fnt, fill=(0, 0, 0), anchor="ma") 
     # draw.text((width / 2, height*0.75), translation, font= fnt,fill=(0, 0, 0), anchor="ma")
 
     draw_text_to_image(img,peom,fnt_peom,peom_text_colour,height/4,paraphrase_stroke_colour )
-    draw_text_to_image(img,paraphrase,fnt_paraphrase,paraphrase_text_colour,height/3, paraphrase_stroke_colour)
+    draw_text_to_image(img,paraphrase,fnt_paraphrase,paraphrase_text_colour,height/2.5, paraphrase_stroke_colour)
     #draw_text_to_image(img,translation,fnt,height*0.75)
 
     img.save("Placement/images/new%s.png" % i)
